@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+
+def add(i_value):
+    '''
+    add all values in input to return their sum.
+    
+    i_value: list or tuple which contains values to calculated
+
+    return: sum 
+
+    '''
+    s = 0
+    for v in i_value:
+        if isinstance(v, int) or isinstance(v, float):
+            s += v
+        else:
+            raise Exception('Warning: element in i_value must be integer or float. Check input parameter: {}'.format(i_value))
+
+    return s
+
+x = [1, 1.2, 3.]
+y = add(x)
+print('input list: {}'.format(y))
+
+x1 = (1,1.2,3.)
+y1 = add(x1)
+print('input tuple: {}'.format(y1))
+
+#define a variable refer to function
+myadd = add
+y1a = myadd(x1)
+print('use function variable: {}'.format(y1a))
+
+#raise error if element is not integer or float
+x2 = [1.2, 'b']
+y2 = add(x2)
+print(y2)
