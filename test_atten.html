@@ -1,0 +1,99 @@
+<DOCTYPE html>
+<html>
+
+<head>
+<style>
+  #mem   {
+    font-weight: bold;
+    font-style: normal;
+    font-size: 120px;
+    text-align: center;
+    color: black;
+  }
+  #number, #mem_timer_tag {
+   font-style: normal;
+    font-size: 20px;
+    text-align: left;
+    margin: 25px 50px 25px 25px;
+  }
+
+  #string_type {
+   font-style: normal;
+    font-size: 20px;
+    text-align: left;
+    margin: 25px 10px 25px 25px;
+  }
+
+  button {
+    font-style: normal;
+    font-size: 20px;
+    text-align: left;
+    margin: 25px 20px 25px 25px;
+    color: green;
+  }
+  br {
+    margin: 10px 20px 10px 10px;
+  }
+</style>
+</head>
+
+<body>
+  <div>
+    <br>
+    <label id="number">Random String Length: </label><input id="rndlen" type="range" name="RandomStrLen" min="3" max="20" value="4" oninput="update_number()"> <br>
+    <label id="mem_timer_tag">Time to hide: </label><input id="mem_timer" type="range" min="1000" max="11000" step="1000" value="3000" oninput="update_number_timer()"> <br>
+    <input type="checkbox" id="string_type" checked>Digit string only when checked</input>
+
+    <button id="next" onclick="generate_rnd()"> Start </button>
+    <button id="toggle_me" onclick="toggle_me()">Toggle Me</button>
+    <p id="mem" placeholder="remember me"> </p>
+  </div>
+  <script>
+    var ch_en = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var ch_dig = "01234567890";
+    //var ch;
+    function update_set() {
+      let ch;
+      if(!document.getElementById("string_type").checked) {
+        ch = ch_en + ch_dig;
+      }
+      else{
+        ch = ch_dig;
+      }
+      return ch;
+    }
+    function generate_rnd() {
+      let ch = update_set();
+      let n = document.getElementById("rndlen").value;
+      let v = "";
+      for(let k = 0; k < n; k++) {
+        let r = Math.floor(Math.random() * ch.length);
+        v += ch.charAt(r); //.toString();
+      }
+      document.getElementById("mem").hidden = false;
+      document.getElementById("mem").innerHTML = v;
+      //document.getElementById("next").disabled = true;
+      setTimeout(hidden_me, document.getElementById("mem_timer").value);
+      
+    }
+    function update_number() {
+      document.getElementById("number").innerHTML =  "String Length: " + document.getElementById("rndlen").value + " ";
+    }
+    function update_number_timer() {
+      document.getElementById("mem_timer_tag").innerHTML = "Hide time:   " + document.getElementById("mem_timer").value + " ";
+    }
+
+    function hidden_me() {
+      document.getElementById("mem").hidden = true;
+    }
+    function toggle_me() {
+      document.getElementById("mem").hidden = ! document.getElementById("mem").hidden;
+    }
+    update_number();
+    update_number_timer();
+    
+</script>
+
+</body>
+
+</html>

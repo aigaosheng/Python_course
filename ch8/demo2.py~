@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+
+#import a module, so all functions in the module imported
+import mymodule
+
+#generate a test input value
+v = {
+        'arron': ['python'],
+        'shengwei': ['python']
+    }
+print('\nTest value: {}\n'.format(v))
+
+#call function
+s = mymodule.isMember('arron', v)
+if s:
+    print('{} is member\n'.format('arron'))
+else:
+    print('{} is not member\n'.format('arron'))
+
+
+name = 'shengwei'
+s = mymodule.isMember(name, v)
+if s:
+    print('{} is member\n'.format(name))
+else:
+    print('{} is not member\n'.format(name))
+
+name = 'Shengwei'
+s = mymodule.isMember(name, v)
+if s:
+    print('{} is member\n'.format(name))
+else:
+    print('{} is not member\n'.format(name))
+
+
